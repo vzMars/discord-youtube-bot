@@ -15,7 +15,7 @@ const createEmbed = (client, video) => {
     .setTimestamp();
 
   const channel = client.channels.cache.get(video.textChannelID);
-  channel.send({ embeds: [embed] });
+  channel.send({ content: '@everyone', embeds: [embed] });
 };
 
 module.exports = {
