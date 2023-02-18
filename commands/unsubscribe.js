@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const Channel = require('../models/Channel');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -8,13 +9,29 @@ module.exports = {
     )
     .addStringOption((option) =>
       option
-        .setName('channel-id')
+        .setName('youtube-id')
         .setDescription(
           'The ID of the YouTube channel you want to unsubscribe from.'
         )
         .setRequired(true)
     ),
   async execute(interaction) {
-    await interaction.reply('unsubscribe!');
+    const youtubeChannelID = interaction.options.getString('youtube-id');
+
+    try {
+      const existingChannel = await Channel.findOne({ youtubeChannelID });
+
+      if (!existingChannel) {
+        throw Error(
+          `You're not subscribed to any channel with ID: ${youtubeChannelID}`
+        );
+      }
+
+      await existingChannel.remove();
+
+      await interaction.reply('Successfully unsubscribed!');
+    } catch (error) {
+      await interaction.reply(error.message);
+    }
   },
 };
