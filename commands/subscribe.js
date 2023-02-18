@@ -31,21 +31,27 @@ module.exports = {
     const { id } = interaction.options.getChannel('text-channel');
     const videoID = '';
 
-    const { uploads, icon } = await fetchUploadsPlaylist(youtubeChannelID);
-
-    if (!uploads) {
-      return await interaction.reply(
-        `Invalid Youtube Channel ID: ${youtubeChannelID}`
-      );
-    }
-
     try {
+      const channels = await Channel.find();
+
+      if (channels.length === 20) {
+        throw Error(
+          `Already subscribed to ${channels.length} channels which is the max.`
+        );
+      }
+
       const existingChannel = await Channel.findOne({ youtubeChannelID });
 
       if (existingChannel) {
         throw Error(
           `Already subscribed to channel with ID: ${youtubeChannelID}`
         );
+      }
+
+      const { uploads, icon } = await fetchUploadsPlaylist(youtubeChannelID);
+
+      if (!uploads) {
+        throw Error(`Invalid Youtube Channel ID: ${youtubeChannelID}`);
       }
 
       await Channel.create({
@@ -56,7 +62,13 @@ module.exports = {
         videoID,
       });
 
-      await interaction.reply('Successfully subscribed to new channel!');
+      const openSlots = 20 - channels.length - 1;
+
+      await interaction.reply(
+        `Successfully subscribed to new channel!\n${openSlots} subscription ${
+          openSlots === 1 ? 'slot' : 'slots'
+        } left.`
+      );
     } catch (error) {
       await interaction.reply(error.message);
     }
