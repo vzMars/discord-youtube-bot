@@ -31,9 +31,9 @@ module.exports = {
     const { id } = interaction.options.getChannel('text-channel');
     const videoID = '';
 
-    const uploadPlaylistID = await fetchUploadsPlaylist(youtubeChannelID);
+    const { uploads, icon } = await fetchUploadsPlaylist(youtubeChannelID);
 
-    if (!uploadPlaylistID) {
+    if (!uploads) {
       return await interaction.reply(
         `Invalid Youtube Channel ID: ${youtubeChannelID}`
       );
@@ -50,7 +50,8 @@ module.exports = {
 
       await Channel.create({
         youtubeChannelID,
-        uploadPlaylistID,
+        uploadPlaylistID: uploads,
+        icon,
         textChannelID: id,
         videoID,
       });

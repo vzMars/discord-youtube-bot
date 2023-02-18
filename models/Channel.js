@@ -9,12 +9,14 @@ const ChannelSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+  icon: {
+    type: String,
+  },
   textChannelID: {
     type: String,
   },
   videoID: {
     type: String,
-    unique: true,
   },
 });
 
