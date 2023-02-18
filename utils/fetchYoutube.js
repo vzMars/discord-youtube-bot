@@ -27,7 +27,7 @@ const fetchUploadsPlaylist = async (id) => {
 };
 
 const fetchLatestVideos = (client) => {
-  schedule.scheduleJob('0 */6 * * *', async () => {
+  schedule.scheduleJob('*/5 * * * *', async () => {
     try {
       const channels = await Channel.find();
       for (const channel of channels) {
