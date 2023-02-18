@@ -14,7 +14,7 @@ const fetchUploadsPlaylist = async (id) => {
     const { totalResults } = data.pageInfo;
 
     if (!totalResults) {
-      return null;
+      return { uploads: null, icon: null };
     }
 
     const { uploads } = data.items[0].contentDetails.relatedPlaylists;
