@@ -38,11 +38,13 @@ const fetchLatestVideos = (client) => {
         const { videoId } = snippet.resourceId;
         let url;
 
-        if (thumbnails.hasOwnProperty('maxres')) {
-          url = thumbnails.maxres.url;
-        } else {
-          url = thumbnails.standard.url;
-        }
+        // if (thumbnails.hasOwnProperty('maxres')) {
+        //   url = thumbnails.maxres.url;
+        // } else {
+        //   url = thumbnails.standard.url;
+        // }
+
+        url = thumbnails.default.url;
 
         const video = {
           title,
