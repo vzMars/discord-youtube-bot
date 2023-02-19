@@ -34,9 +34,15 @@ const fetchLatestVideos = (client) => {
         const videoUrl = `${baseUrl}playlistItems?part=snippet&playlistId=${channel.uploadPlaylistID}&key=${apiKey}`;
         const response = await axios.get(videoUrl);
         const { snippet } = response.data.items[0];
-        const { title, channelTitle, channelId } = snippet;
-        const { url } = snippet.thumbnails.maxres;
+        const { title, channelTitle, channelId, thumbnails } = snippet;
         const { videoId } = snippet.resourceId;
+        let url;
+
+        if (thumbnails.hasOwnProperty('maxres')) {
+          url = thumbnails.maxres.url;
+        } else {
+          url = thumbnails.standard.url;
+        }
 
         const video = {
           title,
