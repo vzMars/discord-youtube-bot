@@ -62,7 +62,7 @@ const fetchLatestVideos = (client) => {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.error(error.response.data);
     }
   });
 };
