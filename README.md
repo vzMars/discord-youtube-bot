@@ -8,15 +8,17 @@ A self-hosted YouTube notification Discord bot that sends notifications to the s
 
 **/subscribe**: Subscribe to a YouTube channel to receive new video notifications.
 
-`This command takes in the YouTube channel id and the text channel where all the notifications will be posted to. There is proper error handling that prevents duplicate YouTube channels from being added to the database, if the provided channel id was invalid, and if the server is already subscribed to the maximum amount of channels (20).`
+```
+This command takes in the YouTube channel id and the text channel where all the notifications will be posted to. There is proper error handling that prevents duplicate YouTube channels from being added to the database, if the provided channel id was invalid, and if the server is already subscribed to the maximum amount of channels (20).
+```
 
 **/unsubscribe**: Unsubscribe from a YouTube channel and stop all video notifications.
 
-`This command takes in the YouTube channel id that the server will unsubscribe from. The bot also checks to see if there is even a channel with that id in the database to remove and if there aren't any channels with that id the bot responds with an error message.`
+This command takes in the YouTube channel id that the server will unsubscribe from. The bot also checks to see if there is even a channel with that id in the database to remove and if there aren't any channels with that id the bot responds with an error message.
 
 **/unsubscribe-all**: Unsubscribe from all YouTube channels and stop all video notifications.
 
-`This command essentially works the same as the previous but it unsubscribes from every single channel in the database. An error message is also displayed to the user if there arent any channels in the database to remove.`
+This command essentially works the same as the previous but it unsubscribes from every single channel in the database. An error message is also displayed to the user if there arent any channels in the database to remove.
 
 ## Self-Hosting:
 
