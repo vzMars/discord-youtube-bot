@@ -40,7 +40,7 @@ Each YouTube channel that is stored on the database keeps track of the channel i
 
 ## Optimizations:
 
-The reasoning behind there being a limit of 20 subscribed channels is due to the YouTube API having a quota limit on their free tier of the API. The limit is 10,000 queries per day and since I wanted to check for a new video every 5 minutes I had to place a stop on the number of channels a server could be subscribed to.
+The reasoning behind there being a limit of 20 subscribed channels is due to the YouTube API having a quota limit on their free tier of the API. The limit is 10,000 queries per day and since I wanted to check for a new video every 5 minutes I had to place a limit on the number of channels a server could be subscribed to.
 
 This is also why I didn't use their search endpoint for fetching that data since it had a cost of 100 when compared to just using the playlistItems or channels endpoint which had a cost of 1. I would also like to improve on how searching for channels is done since users are required to use the channel id to find the channel they would like to subscribe to since the API sometimes does not find the channel by using the name. In the future, if I am able to figure out another way to work with the limitations of YouTube API I would expand on this bot to make work on multiple servers.
 
