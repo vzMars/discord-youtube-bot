@@ -52,7 +52,7 @@ I learned how to work with the discord.js library using their documentation and 
 
 Take a look at these other projects that I have in my portfolio:
 
-**MyBootList API:** https://github.com/vzMars/mybooklist-api
+**MyBookList API:** https://github.com/vzMars/mybooklist-api
 
 **GameBlog API:** https://github.com/vzMars/gameblog-api
 
